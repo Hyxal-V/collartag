@@ -46,7 +46,9 @@ class TagScreen extends StatelessWidget {
               child: Text.rich(TextSpan(children: [
                 TextSpan(text: "Hey there! I'm with ", style: paraText),
                 TextSpan(text: ownerName, style: paraBoldText),
-                TextSpan(text: ". If I am lost call ", style: paraText),
+                phoneNumber !="e"?
+                TextSpan(text: ". If I am lost call ", style: paraText):TextSpan(text: ""),
+
                 TextSpan(text: phoneNumber, style: paraBoldText),
                 email != "e"
                     ? TextSpan(

@@ -1,10 +1,12 @@
+import 'dart:js_interop';
+
 import 'package:collarcode/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:html' as html;
 import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:js' as js;
-
+import 'package:intl_phone_field/intl_phone_field.dart';
 class CreatorScreen extends StatefulWidget {
   const CreatorScreen({super.key});
 
@@ -64,16 +66,15 @@ class _CreatorScreenState extends State<CreatorScreen> {
                 decoration: textfieldStyle(hintText: "Owner Name*"),
               ),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
-              TextField(
-                controller: _phoneNumberController,
-                keyboardType:
-                    TextInputType.phone, // Specifically for phone numbers
+            
+              IntlPhoneField(
+                keyboardType: TextInputType.phone, // Specifically for phone numbers
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly, // Only allow digits
                 ],
-                decoration: textfieldStyle(hintText: "Phone Number*"),
-              ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
+                       controller: _phoneNumberController,
+                decoration: textfieldStyle(hintText: "Phone Number"),),
+              SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
               TextField(
                 controller: _emailController,
                 decoration: textfieldStyle(hintText: "Email"),
@@ -91,14 +92,14 @@ class _CreatorScreenState extends State<CreatorScreen> {
                   onPressed: () async {
                     if (_petNameController.text == "" ||
                         _petTypeController.text == "" ||
-                        _ownerNameController.text == "" ||
-                        _phoneNumberController.text == "") {
+                        _ownerNameController.text == "" 
+                       ) {
                       js.context.callMethod(
                           'alert', ["Please fill all * marked TextField"]);
                     } else {
                       final qrImage = await QrPainter(
                         data:
-                            '${html.window.location.origin}/#/tag/${_petNameController.text}/${_petTypeController.text}/${_ownerNameController.text}/${_phoneNumberController.text}/${_emailController.text == "" ? "e" : _emailController.text}/${_addressController.text == "" ? "e" : _addressController.text}',
+                            '${html.window.location.origin}/#/tag/${_petNameController.text}/${_petTypeController.text}/${_ownerNameController.text}/${_phoneNumberController.text==""? "e" :_phoneNumberController.text }/${_emailController.text == "" ? "e" : _emailController.text}/${_addressController.text == "" ? "e" : _addressController.text}',
                         version: QrVersions.auto,
                         gapless: false,
                       ).toImageData(200);

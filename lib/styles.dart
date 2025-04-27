@@ -31,6 +31,7 @@ final downloadButton = ElevatedButton.styleFrom(
     borderRadius: BorderRadius.zero, // No rounded corners
   ),
 );
+final inputTextField = TextStyle(fontSize: 50,fontWeight: FontWeight.w900,color: const Color.fromARGB(255, 0, 0, 0));
 final downloadButtonText = TextStyle(fontSize: 30);
 
 Color pickRandomColor() {
