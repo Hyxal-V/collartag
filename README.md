@@ -1,6 +1,6 @@
 # CollarTag
 
-CollarTag is a simple mobile application designed to generate QR codes for pet collars and apparel. These QR codes, when scanned, display essential information about the pet and its owner, facilitating quick reunions in case of lost pets.
+CollarTag is a simple web mobile application designed to generate QR codes for pet collars and apparel. These QR codes, when scanned, display essential information about the pet and its owner, facilitating quick reunions in case of lost pets.
 
 **Key Features:**
 
